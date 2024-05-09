@@ -33,6 +33,13 @@ public class SoundBuilderRunner
         copySoundDataToClipboard();
     }
 
+    /**
+     * requests a number from the user and will keep asking until it gets a number in the given range, inclusive.
+     * @param prompt - what to say to ask the user for the number
+     * @param min - the smallest acceptable number
+     * @param max - the largest acceptable number
+     * @return
+     */
     public static double requestDoubleInRange(String prompt, double min, double max)
     {
         if (reader == null)
@@ -56,6 +63,9 @@ public class SoundBuilderRunner
         }
     }
 
+    /**
+     * initializes the stuff you need to make the sound play.
+     */
     public static void setupAudio()
     {
         audioF = new AudioFormat(rate, 8, 1, true, false);
@@ -73,6 +83,15 @@ public class SoundBuilderRunner
         System.out.println("Set up and ready to receive generated sound data.");
     }
 
+    /**
+     * generates a second worth of sound, based on the sum of three sine waves.
+     * @param freq1 - the frequency of the first sine wave
+     * @param volume1 - the amplitude of the first sine wave
+     * @param freq2 - the frequency of the second sine wave
+     * @param volume2 -the amplitude of the second sine wave
+     * @param freq3 - the frequency of the third sine wave
+     * @param voluem3 - the amplitude of the third sine wave
+     */
     public static void generateAudioData(double freq1, double volume1, double freq2, double volume2, double freq3, double voluem3)
     {
         //TODO: here is where you will loop to generate one datum of the generated sound (i.e. one point on the
@@ -92,6 +111,11 @@ public class SoundBuilderRunner
 
     }
 
+    /**
+     * adds a single datum to the sound to play and to the "builder" StringBuilder
+     * @param t - the time for this datum
+     * @param v - the "height" of the graph at this time.
+     */
     public static void appendSoundData(double t, double v)
     {
         // add this value to the sound that will be played. We do a little bit of typecasting to make this work.
@@ -105,7 +129,9 @@ public class SoundBuilderRunner
 
     }
 
-
+    /**
+     * plays the sound that you just generated.
+     */
     public static void playSound()
     {
         System.out.println("Playing your sound.");
@@ -115,6 +141,11 @@ public class SoundBuilderRunner
         sourceDL.close();
         System.out.println("Done playing sound.");
     }
+
+    /**
+     * takes the StringBuilder "builder" and copies all of its content into the Clipboard so it can be pasted into
+     * another program.
+     */
     public static void copySoundDataToClipboard()
     {
         Clipboard clippy = Toolkit.getDefaultToolkit().getSystemClipboard();
