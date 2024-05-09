@@ -21,7 +21,14 @@ public class SoundBuilderRunner
     public static void main(String[] args)
     {
         setupAudio();
-        generateAudioData();
+        int f1 = requestIntInRange("Enter the first frequency in Hz, (100-10000)", 100, 10000 );
+        int v1 = requestIntInRange("Enter the first amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
+        int f2 = requestIntInRange("Enter the second frequency in Hz, (100-10000)", 100, 10000 );
+        int v2 = requestIntInRange("Enter the second amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
+        int f3 = requestIntInRange("Enter the third frequency in Hz, (100-10000)", 100, 10000 );
+        int v3 = requestIntInRange("Enter the third amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
+
+        generateAudioData(f1, v1, f2, v2, f3, v3);
         playSound();
         copySoundDataToClipboard();
     }
@@ -33,7 +40,7 @@ public class SoundBuilderRunner
         int response;
         while (true)
         {
-            System.out.println(prompt);
+            System.out.print(prompt);
 
             try
             {
@@ -66,7 +73,7 @@ public class SoundBuilderRunner
         System.out.println("Set up and ready to receive generated sound data.");
     }
 
-    public static void generateAudioData()
+    public static void generateAudioData(int freq1, int volume1, int freq2, int volume2, int freq3, int voluem3)
     {
         //TODO: here is where you will loop to generate one datum of the generated sound (i.e. one point on the
         // sinusoidal wave) at a time, for a total of one second's worth. Note that the variable "rate" was declared
