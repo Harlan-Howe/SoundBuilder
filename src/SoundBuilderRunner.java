@@ -21,30 +21,30 @@ public class SoundBuilderRunner
     public static void main(String[] args)
     {
         setupAudio();
-        int f1 = requestIntInRange("Enter the first frequency in Hz, (100-10000)", 100, 10000 );
-        int v1 = requestIntInRange("Enter the first amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
-        int f2 = requestIntInRange("Enter the second frequency in Hz, (100-10000)", 100, 10000 );
-        int v2 = requestIntInRange("Enter the second amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
-        int f3 = requestIntInRange("Enter the third frequency in Hz, (100-10000)", 100, 10000 );
-        int v3 = requestIntInRange("Enter the third amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
+        double f1 = requestDoubleInRange("Enter the first frequency in Hz, (100-10000)", 100, 10000 );
+        double v1 = requestDoubleInRange("Enter the first amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
+        double f2 = requestDoubleInRange("Enter the second frequency in Hz, (100-10000)", 100, 10000 );
+        double v2 = requestDoubleInRange("Enter the second amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
+        double f3 = requestDoubleInRange("Enter the third frequency in Hz, (100-10000)", 100, 10000 );
+        double v3 = requestDoubleInRange("Enter the third amplitude of the wave (0-127). The total of your waves should not exceed 127.", 0,127);
 
         generateAudioData(f1, v1, f2, v2, f3, v3);
         playSound();
         copySoundDataToClipboard();
     }
 
-    public static int requestIntInRange(String prompt, int min, int max)
+    public static double requestDoubleInRange(String prompt, double min, double max)
     {
         if (reader == null)
             reader = new Scanner(System.in);
-        int response;
+        double response;
         while (true)
         {
             System.out.print(prompt);
 
             try
             {
-                response = reader.nextInt();
+                response = reader.nextDouble();
             } catch (InputMismatchException imExcept)
             {
                 System.out.println("That wasn't a number. Please try again.");
@@ -73,7 +73,7 @@ public class SoundBuilderRunner
         System.out.println("Set up and ready to receive generated sound data.");
     }
 
-    public static void generateAudioData(int freq1, int volume1, int freq2, int volume2, int freq3, int voluem3)
+    public static void generateAudioData(double freq1, double volume1, double freq2, double volume2, double freq3, double voluem3)
     {
         //TODO: here is where you will loop to generate one datum of the generated sound (i.e. one point on the
         // sinusoidal wave) at a time, for a total of one second's worth. Note that the variable "rate" was declared
