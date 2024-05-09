@@ -116,13 +116,18 @@ public class SoundBuilderRunner
     /**
      * adds a single datum to the sound to play and to the "builder" StringBuilder
      * @param t - the time for this datum
-     * @param v - the "height" of the graph at this time.
+     * @param v - the value" of the graph at this time.
      */
     public static void appendSoundData(double t, double v)
     {
+        double valueToAppend = v;
+        // TODO: valueToAppend really needs to be between -127 and +127. If it isn't, set it to the max or min value,
+        //       as appropriate. Examples: if v = 25 --> vTA = 25; if v = 137 --> vTA = 127; if v = -256 --> vTA = -127.
+
+
         // add this value to the sound that will be played. We do a little bit of typecasting to make this work.
         // (Don't worry about this bit of detail.)
-        buf[0] = (byte)v;
+        buf[0] = (byte)valueToAppend;
         sourceDL.write(buf,0,1);
 
         if (builder == null) // called if this is the first time we ran this method.
