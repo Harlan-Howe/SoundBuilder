@@ -38,10 +38,12 @@ public class SoundBuilderRunner
      * @param prompt - what to say to ask the user for the number
      * @param min - the smallest acceptable number
      * @param max - the largest acceptable number
-     * @return
+     * @return the number input from the user, which falls in range.
      */
     public static double requestDoubleInRange(String prompt, double min, double max)
     {
+        if (min > max)
+            throw new RuntimeException(STR."You asked an unfair question. min: \{min} is greater than max: \{max}");
         if (reader == null)
             reader = new Scanner(System.in);
         double response;
@@ -68,6 +70,7 @@ public class SoundBuilderRunner
      */
     public static void setupAudio()
     {
+        // You don't need to worry about this method - lots of extra detail here.
         audioF = new AudioFormat(rate, 8, 1, true, false);
         buf = new byte[1];
         try
@@ -79,7 +82,6 @@ public class SoundBuilderRunner
             System.out.println("Problem geting source data line. (Probably not student's fault.)");
             System.out.println(luException.getMessage());
         }
-        builder = new StringBuilder();
         System.out.println("Set up and ready to receive generated sound data.");
     }
 
@@ -122,6 +124,10 @@ public class SoundBuilderRunner
         // (Don't worry about this bit of detail.)
         buf[0] = (byte)v;
         sourceDL.write(buf,0,1);
+
+        if (builder == null) // called if this is the first time we ran this method.
+            builder = new StringBuilder();
+
 
         // TODO: append a line consisting of the time, a tab character, the value, and a newline character to the
         //  StringBuilder, "builder".
