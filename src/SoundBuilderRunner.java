@@ -87,14 +87,14 @@ public class SoundBuilderRunner
 
     /**
      * generates a second worth of sound, based on the sum of three sine waves.
-     * @param freq1 - the frequency of the first sine wave
-     * @param volume1 - the amplitude of the first sine wave
-     * @param freq2 - the frequency of the second sine wave
-     * @param volume2 -the amplitude of the second sine wave
-     * @param freq3 - the frequency of the third sine wave
-     * @param voluem3 - the amplitude of the third sine wave
+     * @param freq0 - the frequency of the first sine wave
+     * @param volume0 - the amplitude of the first sine wave
+     * @param freq1 - the frequency of the second sine wave
+     * @param volume1 -the amplitude of the second sine wave
+     * @param freq2 - the frequency of the third sine wave
+     * @param volume2 - the amplitude of the third sine wave
      */
-    public static void generateAudioData(double freq1, double volume1, double freq2, double volume2, double freq3, double voluem3)
+    public static void generateAudioData(double freq0, double volume0, double freq1, double volume1, double freq2, double volume2)
     {
         //TODO: here is where you will loop to generate one datum of the generated sound (i.e. one point on the
         // sinusoidal wave) at a time, for a total of one second's worth. Note that the variable "rate" was declared
