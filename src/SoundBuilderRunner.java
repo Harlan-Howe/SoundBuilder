@@ -106,7 +106,7 @@ public class SoundBuilderRunner
 
             // calculate the current time for this iteration of the loop.
 
-            // calculate the value at this time. You'll likely want some form of Math.sin(t * f * 2 * Math.PI)
+            // calculate the value at this time. You'll likely want some form of vol * Math.sin(t * frq * 2 * Math.PI)
 
             appendSoundData(time, value);
         // end your loop.
